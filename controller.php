@@ -12,7 +12,7 @@
       private $action;
       private $data;
       private $view;
-      
+
       private $u;
 
       private $pList;
@@ -85,7 +85,7 @@
 
             case "dresslist":
                $this->dressList();
-               break;   
+               break;
 
             case "alllist":
                $this->allList();
@@ -136,7 +136,7 @@
                $this->data = "User " . $_GET['id'] . " has been logined. Hi!";
                $this->view = "main.php";
                break;
-            
+
             default:
                # code...
                break;
@@ -180,13 +180,13 @@
          $this->dList = $this->pService->getDressList();
          $this->data = $this->dList;
          $this->view = "dresslist.php";
-      }   
+      }
 
       public function allList() {
          $this->pList = $this->pService->getProductList();
          $this->data = $this->pList;
-         $this->view = "alllist.php";         
-      }   
+         $this->view = "alllist.php";
+      }
 
       public function detail() {
          $pid = $_POST['pid'];
@@ -199,7 +199,7 @@
             case 'T':
                $this->detailList = $this->pService->getTopDetailList($pid, $pname, $price);
                break;
-            
+
             case 'B':
                $this->detailList = $this->pService->getBottomDetailList($pid, $pname, $price);
                break;
@@ -225,30 +225,32 @@
       }
 
       public function editinfo() {
-         $id = $_POST['id'];
-         $this->u = $this->uService->getUser($id);
-         $this->data = $this->u;
+      $id = $_POST['id'];
+      $this->u = $this->uService->getUser($id);
+      $this->data = $this->u;
 
-         $this->u->setPw($_POST['pw']);
-         $this->u->setName($_POST['name']);
+      if($_POST['pw'] != NULL)
+             $this->u->setPw($_POST['pw']);
+      if($_POST['name'] != NULL)
+              $this->u->setName($_POST['name']);
 
-         $this->u->setTopLength($_POST['toplength']);
-         $this->u->setShoulder($_POST['shoulder']);
-         $this->u->setChest($_POST['chest']);
-         $this->u->setArmhole($_POST['armhole']);
-         $this->u->setArm($_POST['arm']);
+      $this->u->setTopLength($_POST['toplength']);
+      $this->u->setShoulder($_POST['shoulder']);
+      $this->u->setChest($_POST['chest']);
+      $this->u->setArmhole($_POST['armhole']);
+      $this->u->setArm($_POST['arm']);
 
-         $this->u->setBottomLength($_POST['bottomlength']);
-         $this->u->setWaist($_POST['waist']);
-         $this->u->setHip($_POST['hip']);
-         $this->u->setThigh($_POST['thigh']);
-         $this->u->setCrotch($_POST['crotch']);
+      $this->u->setBottomLength($_POST['bottomlength']);
+      $this->u->setWaist($_POST['waist']);
+      $this->u->setHip($_POST['hip']);
+      $this->u->setThigh($_POST['thigh']);
+      $this->u->setCrotch($_POST['crotch']);
 
-         $this->u->setHeight($_POST['height']);
+      $this->u->setHeight($_POST['height']);
 
-         $this->uService->editInfo($this->u);
-         $this->view="mypage.php";
-      }
+      $this->uService->editInfo($this->u);
+      $this->view="mypage.php";
+   }
    }
 
 ?>

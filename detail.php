@@ -1,7 +1,28 @@
 <?php include('top.inc'); ?>
 
+<style>
+
+.content {
+  margin: auto;
+  text-align: center;
+}
+
+#c {
+  margin: auto;
+}
+
+.pentagon {
+  width: 480px;
+  height: 480px;
+  margin: auto;
+  padding: 3px 3px 3px 3px;
+  display:block;
+}
+
+</style>
+
 <?php
-  // get Product id and classify its type 
+  // get Product id and classify its type
   // the first letter of id is its type
   // T:Top, B:Bottom, D:Dress
 
@@ -14,6 +35,10 @@
   $optionList = null;
 
   $type = substr($product->getId(), 0, 1);
+
+  // json file generation
+  $posts = array();
+
   switch ($type) {
 
     case 'T':
@@ -34,6 +59,7 @@
 
         $optionList = $optionList . '<option>' . $top->getSize() . '</option>';
 
+        $posts[] = array('top'=>array('size' => $top->getSize(), 'length' => $top->getTopLength(), 'shoulder' => $top->getShoulder(), 'chest' => $top->getChest(), 'armhole' => $top->getArmhole(), 'arm' => $top->getArm()));
       }
 
       // User size info
@@ -50,7 +76,14 @@
         $sizeList = $sizeList . '<td>' . $u->getArmhole() . '</td>';
         $sizeList = $sizeList . '<td>' . $u->getArm() . '</td>';
         $sizeList = $sizeList . '</tr>';
-      }      
+
+        $posts[] = array('top'=>array('size' => "user", 'length' => $u->getTopLength(), 'shoulder' => $u->getShoulder(), 'chest' => $u->getChest(), 'armhole' => $u->getArmhole(), 'arm' => $u->getArm()));
+
+      // $responses = array('top') => array($posts[]);
+	    $fp = fopen('data.json', 'w');
+	    fwrite($fp, json_encode($posts));
+	    fclose($fp);
+      }
 
       break;
 
@@ -72,7 +105,7 @@
 
         $optionList = $optionList . '<option>' . $bottom->getSize() . '</option>';
 
-      }  
+      }
 
       // User size info
       // if session has id
@@ -88,7 +121,7 @@
         $sizeList = $sizeList . '<td>' . $u->getThigh() . '</td>';
         $sizeList = $sizeList . '<td>' . $u->getCrotch() . '</td>';
         $sizeList = $sizeList . '</tr>';
-      }        
+      }
 
       break;
 
@@ -125,11 +158,11 @@
         $sizeList = $sizeList . '<td>' . $u->getChest() . '</td>';
         $sizeList = $sizeList . '<td>' . $u->getArmhole() . '</td>';
         $sizeList = $sizeList . '<td>' . $u->getArm() . '</td>';
-        $sizeList = $sizeList . '</tr>';            
+        $sizeList = $sizeList . '</tr>';
       }
 
       break;
-    
+
     default:
       # code...
       break;
@@ -145,22 +178,24 @@
                   <div class="card mb-6">
                     <img class="product-img-top rounded" src="img/<?php echo $product->getId();?>.png"">
                   </div>
+                  <div class="container py-5">
+	                 <h4> <?php echo $product->getName(); ?> </h4><br>
+	                 <p class="text-muted">Code: <?php echo $product->getId(); ?></p>
+	                 <p class="text-muted">Price: ₩ <?php echo $product->getPrice(); ?></p>
+                  </div>
               </div>
               <div class="col-md-6">
-                 <h4> <?php echo $product->getName(); ?> </h4>
-                 <p class="text-muted">Code: <?php echo $product->getId(); ?> </p>
-                 <p class="text-muted">Price: ₩ <?php echo $product->getPrice(); ?> </p>
-                 <div class="py-3">
-                 <h5 class="detail-size-title">Size</h5>
-                  <select class="form-control form-control-lg col-md-2">
-                    <?php echo $optionList; ?>
-                  </select>
-                  </div>
+   	                 <div class="py-3">
+		                 <h5 class="detail-size-title" style="display: inline; margin-right: 15px;">Size</h5>
+		                  <select class="form-control form-control-lg col-md-3" style="display: inline;">
+		                    <?php echo $optionList; ?>
+		                  </select>
+	                 </div>
                   <table class="table table-sm py-3">
                     <thead>
                       <tr class="table-title">
                         <th scope="col">Size</th>
-                        <?php 
+                        <?php
                           for($i = 0; $i < count($sizeListTitle); $i++) {
                             echo '<th scope="col">' . $sizeListTitle[$i] . '</th>';
                           }
@@ -171,6 +206,20 @@
                       <?php echo $sizeList; ?>
                     </tbody>
                 </table>
+                <div class="col-md">
+
+                	<!--<img src="img/sample_graph.png" style="width: 80%;">-->
+                	<?php
+                		if(isset($_SESSION['id'])) {
+                			echo '<h5 class="detail-size-title text-center" style="margin-top:40px; margin-bottom:-40px;">Graph</h5>
+                				<div class="content"></div>';
+                		}
+                	?>
+
+					<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+					<script type="text/javascript" src="data.json"></script>
+          <?php include('user_graph.inc')?>
+				        </div>
                 <div class="text-center py-5">
                   <button type="button" class="btn btn-lg btn-sub">
                     <img class="btn-img" src="assets/card.png">
@@ -183,10 +232,7 @@
                 </div>
               </div>
           </div>
-          <div class="row">
-          </div>
         </div>
     </div>
     </main>
-
 <?php include('bottom.inc'); ?>
