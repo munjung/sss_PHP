@@ -4,55 +4,80 @@
     <!-- <script type="application/json" src="data.json" id='user_info'></script> -->
     <script>
 
-    // Object.prototype.getKeyByValue = function(value){
-    //   for(var prop in this){
-    //     if(this.hasOwnProperty(prop)){
-    //       if(this[prop]===value)
-    //         return prop;
-    //     }
-    //   }
-    // }
+    Object.prototype.getKeyByValue = function(value){
+      for(var prop in this){
+        if(this.hasOwnProperty(prop)){
+          if(this[prop]===value)
+            return prop;
+        }
+      }
+    }
 
 
-     var size_name=[];
+     var top_size=[];
+     var top_length=[];
+     var top_shoulder=[];
+     var top_chest=[];
+     var top_armhole=[];
+     var top_arm=[];
+
      var result = JSON.parse(document.getElementById('user_info').textContent);
      for(var i=0; i<result.length; i++){
-       alert(result[i].top);
+       if(result[i].top){
+          top_size.push(result[i].top.size);
+          top_length.push(result[i].top.length);
+          top_shoulder.push(result[i].top.shoulder);
+          top_chest.push(result[i].top.chest);
+          top_armhole.push(result[i].top.armhole);
+          top_arm.push(result[i].top.arm);
+
+
+
+          var user_size = [
+            {"header" : "",
+              "captions" : [
+                result[0].top.getKeyByValue(top_length[0]),
+                result[0].top.getKeyByValue(top_shoulder[0]),
+                result[0].top.getKeyByValue(top_chest[0]),
+                result[0].top.getKeyByValue(top_armhole[0]),
+                result[0].top.getKeyByValue(top_arm[0])
+              ],
+              "values" : [
+                (top_length[3]/top_length[0]),
+                (top_shoulder[3]/top_shoulder[0]),
+                (top_chest[3]/top_chest[0]),
+                (top_armhole[3]/top_armhole[0]),
+                (top_arm[3]/top_arm[0])
+              ]
+            }
+          ];
+
+       }else if(result[i].bottom){
+
+
+         var user_size = [
+           {"header" : "",
+             "captions" : [
+               result[0].top.getKeyByValue(top_length[0]),
+               result[0].top.getKeyByValue(top_shoulder[0]),
+               result[0].top.getKeyByValue(top_chest[0]),
+               result[0].top.getKeyByValue(top_armhole[0]),
+               result[0].top.getKeyByValue(top_arm[0])
+             ],
+             "values" : [
+               0.35,
+               0.55,
+               0.75,
+               0.60,
+               0.80
+             ]
+           }
+         ];
+
+       }
      }
-    // console.log('dddd');
-     // for(var i =0; i<result.length; i++){
-     //   size_name.push(result[i].size);
-     // }
-     //
-     // for(var i in size_name){
-     //   alert(size_name[i]);
-     // }
-
-    //  alert(result[0].getKeyByValue('S'));
-
-    // alert(data);
-     //console.log(result);
-     //alert(result.length)
 
 
-    var user_size = [
-      {"header" : "sss",
-        "captions" : [
-          "총장",
-          "어깨",
-          "가슴",
-          "암홀",
-          "소매"
-        ],
-        "values" : [
-          0.35,
-          0.55,
-          0.75,
-          0.60,
-          0.80
-        ]
-      }
-    ];
 
     var pentagonIndex = 0;
     var valueIndex = 0;
