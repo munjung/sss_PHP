@@ -10,12 +10,12 @@ if (session_status() == PHP_SESSION_NONE) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="bootstrap-4.1.0/favicon.ico">
-    
+    <link rel="icon" href="bootstrap-4.1.1/favicon.ico">
+
     <title>Smart Size Solution</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="bootstrap-4.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap-4.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/custom.css" rel="stylesheet">
@@ -39,12 +39,12 @@ if (session_status() == PHP_SESSION_NONE) {
             <div class="col-sm-4 offset-md-1 py-4">
               <h4 class="text-white">MENU</h4>
               <ul class="list-unstyled">
-                <?php   
+                <?php
 
                   if(!isset($_SESSION['id'])) {
                     print '<li><a href="index.php?action=loginform" class="text-white">Login</a></li>';
                     print '<li><a href="index.php?action=joinform" class="text-white">Join</a></li>';
-                 
+
                   } else {
                     print '<li><a href="index.php?action=logout" class="text-white">Logout</a></li>';
                     print '<li><a href="index.php?action=mypage&id=' . $_SESSION['id'] . '" class="text-white">My Page</a></li>';

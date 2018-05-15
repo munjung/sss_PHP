@@ -211,12 +211,12 @@
                 	<!--<img src="img/sample_graph.png" style="width: 80%;">-->
                 	<?php
                 		if(isset($_SESSION['id'])) {
-                			echo '<h5 class="detail-size-title text-center" style="margin-top:40px; margin-bottom:-40px;">Graph</h5>
+                			echo '<h5 class="detail-size-title text-center" style="margin-top:30px; margin-bottom:-40px;">Graph</h5>
                 				<div class="content"></div>';
                 		}
                 	?>
-
-					<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!--
+				  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
 					<script type="text/javascript" src="data.json"></script>
           <?php include('user_graph.inc')?>
 				        </div>
