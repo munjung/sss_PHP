@@ -215,11 +215,12 @@
                 				<div class="content"></div>';
                 		}
                 	?>
-<!--
-				  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
-					<script type="text/javascript" src="data.json"></script>
+				  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+          <script type="application/json" id ='user_info'><?php include('data.json');?></script>
+					<!-- <script type="text/javascript" src="data.json"></script> -->
           <?php include('user_graph.inc')?>
-				        </div>
+          </div>
+
                 <div class="text-center py-5">
                   <button type="button" class="btn btn-lg btn-sub">
                     <img class="btn-img" src="assets/card.png">
