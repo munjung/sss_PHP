@@ -22,6 +22,7 @@
      var top_arm=[];
 
      var result = JSON.parse(document.getElementById('user_info').textContent);
+     //alert(result);
      for(var i=0; i<result.length; i++){
        if(result[i].top){
           top_size.push(result[i].top.size);
@@ -43,11 +44,11 @@
                 result[0].top.getKeyByValue(top_arm[0])
               ],
               "values" : [
-                (top_length[3]/top_length[0]),
-                (top_shoulder[3]/top_shoulder[0]),
-                (top_chest[3]/top_chest[0]),
-                (top_armhole[3]/top_armhole[0]),
-                (top_arm[3]/top_arm[0])
+                (top_length[3]/top_length[1]),
+                (top_shoulder[3]/top_shoulder[1]),
+                (top_chest[3]/top_chest[1]),
+                (top_armhole[3]/top_armhole[1]),
+                (top_arm[3]/top_arm[1])
               ]
             }
           ];

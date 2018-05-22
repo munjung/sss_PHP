@@ -14,12 +14,21 @@
 .pentagon {
   width: 480px;
   height: 480px;
-  margin: auto;
+  margin: auto;``
   padding: 3px 3px 3px 3px;
   display:block;
 }
 
 </style>
+<script src='https://code.jquery.com/jquery-3.3.1.js'> </script>
+<script>
+$(document).ready(function(){
+  $('#user_select_size').on('change', function() {
+          alert(this.value);
+           $("#header").load("user_graph.php");
+      });
+});
+</script>
 
 <?php
   // get Product id and classify its type
@@ -107,6 +116,7 @@
 
       }
 
+
       // User size info
       // if session has id
       if(isset($_SESSION['id'])) {
@@ -187,7 +197,7 @@
               <div class="col-md-6">
    	                 <div class="py-3">
 		                 <h5 class="detail-size-title" style="display: inline; margin-right: 15px;">Size</h5>
-		                  <select class="form-control form-control-lg col-md-3" style="display: inline;">
+		                  <select class="form-control form-control-lg col-md-3" style="display: inline;" id="user_select_size">
 		                    <?php echo $optionList; ?>
 		                  </select>
 	                 </div>
@@ -218,7 +228,12 @@
 				  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
           <script type="application/json" id ='user_info'><?php include('data.json');?></script>
 					<!-- <script type="text/javascript" src="data.json"></script> -->
-          <?php include('user_graph.inc')?>
+
+
+        //
+        <div id="header"></div>
+
+
           </div>
 
                 <div class="text-center py-5">

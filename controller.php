@@ -225,32 +225,32 @@
       }
 
       public function editinfo() {
-      $id = $_POST['id'];
-      $this->u = $this->uService->getUser($id);
-      $this->data = $this->u;
+         $id = $_POST['id'];
+         $this->u = $this->uService->getUser($id);
+         $this->data = $this->u;
 
       if($_POST['pw'] != NULL)
              $this->u->setPw($_POST['pw']);
       if($_POST['name'] != NULL)
               $this->u->setName($_POST['name']);
 
-      $this->u->setTopLength($_POST['toplength']);
-      $this->u->setShoulder($_POST['shoulder']);
-      $this->u->setChest($_POST['chest']);
-      $this->u->setArmhole($_POST['armhole']);
-      $this->u->setArm($_POST['arm']);
+         $this->u->setTopLength($_POST['toplength']);
+         $this->u->setShoulder($_POST['shoulder']);
+         $this->u->setChest($_POST['chest']);
+         $this->u->setArmhole($_POST['armhole']);
+         $this->u->setArm($_POST['arm']);
 
-      $this->u->setBottomLength($_POST['bottomlength']);
-      $this->u->setWaist($_POST['waist']);
-      $this->u->setHip($_POST['hip']);
-      $this->u->setThigh($_POST['thigh']);
-      $this->u->setCrotch($_POST['crotch']);
+         $this->u->setBottomLength($_POST['bottomlength']);
+         $this->u->setWaist($_POST['waist']);
+         $this->u->setHip($_POST['hip']);
+         $this->u->setThigh($_POST['thigh']);
+         $this->u->setCrotch($_POST['crotch']);
 
-      $this->u->setHeight($_POST['height']);
+         $this->u->setHeight($_POST['height']);
 
-      $this->uService->editInfo($this->u);
-      $this->view="mypage.php";
-   }
+         $this->uService->editInfo($this->u);
+         $this->view="mypage.php";
+      }
    }
 
 ?>
