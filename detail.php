@@ -230,7 +230,8 @@ $(document).ready(function(){
 					<!-- <script type="text/javascript" src="data.json"></script> -->
 
 
-        //
+        <?php include('user_graph.php'); ?>
+        
         <div id="header"></div>
 
 

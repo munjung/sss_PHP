@@ -1,6 +1,6 @@
 <?php include('top.inc'); ?>
 
-<?php 
+<?php
 
 // ProductList
 $productList = $this->pList;
@@ -45,7 +45,7 @@ $cnt = $productList->getLength();
         <div class="container">
         <h2 class="text-center">NEW ARRIVAL</h2>
           <div class="row">
-            <?php 
+            <?php
               for($i=0; $i< $cnt; $i++) {
 
                 $p = $productList->get($i);
