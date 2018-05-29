@@ -1,4 +1,7 @@
-<?php include('top.inc'); ?>
+<?php
+include('top.inc');
+require('draw_size_graph_test.php')
+?>
 
 <style>
 
@@ -23,11 +26,18 @@
 <script src='https://code.jquery.com/jquery-3.3.1.js'> </script>
 <script>
 $(document).ready(function(){
-  $('#user_select_size').on('change', function() {
-          alert(this.value);
-           $("#header").load("user_graph.php");
-      });
+  changeValue();
+  // $('#user_select_size').on('change', function() {
+  //         alert(this.value);
+  //          $("#header").load("user_graph.php");
+  //     });
 });
+
+  function changeValue(){
+    var i = document.getElementById('user_select_size');
+    var r = i.options[i.selectedIndex].value;
+    console.log(r);
+  }
 </script>
 
 <?php
@@ -194,12 +204,14 @@ $(document).ready(function(){
 	                 <p class="text-muted">Price: ₩ <?php echo $product->getPrice(); ?></p>
                   </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-6"> <!--"javascript:changeSlectValue(this.value)"-->
    	                 <div class="py-3">
 		                 <h5 class="detail-size-title" style="display: inline; margin-right: 15px;">Size</h5>
-		                  <select class="form-control form-control-lg col-md-3" style="display: inline;" id="user_select_size">
+
+                      <select name="user_select" class="form-control form-control-lg col-md-3" style="display: inline;" id="user_select_size" onChange="return changeValue()";>
 		                    <?php echo $optionList; ?>
 		                  </select>
+
 	                 </div>
                   <table class="table table-sm py-3">
                     <thead>
@@ -225,13 +237,27 @@ $(document).ready(function(){
                 				<div class="content"></div>';
                 		}
                 	?>
-				  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+				  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
           <script type="application/json" id ='user_info'><?php include('data.json');?></script>
+           -->
 					<!-- <script type="text/javascript" src="data.json"></script> -->
 
+          <script type="text/javascript" src="draw_size_graph_test.php">
+            var test = new Draw_Graph();
+          </script>
 
-        <?php include('user_graph.php'); ?>
-        
+            <!-- <?php
+          //  $get_graph = null;
+            $get_graph = new Draw_Graph();
+           ?> -->
+
+      <!--  <?php include('user_graph.php'); ?> -->
+      <!-- <?php echo $graph -> write() ?> -->
+
+
+
         <div id="header"></div>
 
 
