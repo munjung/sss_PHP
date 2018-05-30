@@ -24,6 +24,7 @@ require('draw_size_graph_test.php')
 
 </style>
 <script src='https://code.jquery.com/jquery-3.3.1.js'> </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
   changeValue();
@@ -36,7 +37,21 @@ $(document).ready(function(){
   function changeValue(){
     var i = document.getElementById('user_select_size');
     var r = i.options[i.selectedIndex].value;
+    refreshGraph(r);
     console.log(r);
+  }
+
+  function refreshGraph(r){
+    var i = document.getElementById('graph');
+    $.ajax({
+  url: "user_graph.php",
+  method: "POST",
+  data: { "profile_viewer_uid": r }})
+
+  //  $.post('user_graph.php', {variable: r});
+    //window.location.href = "user_graph.php?name=" + r;
+  //  i.setAttribute('Size',r);
+  //  console.log(i);
   }
 </script>
 
@@ -47,14 +62,10 @@ $(document).ready(function(){
 
   // get the first instance of array to display name, price, code
   $product = $this->detailList->get(0);
-
   $sizeListTitle = null;
   $sizeList = null;
-
   $optionList = null;
-
   $type = substr($product->getId(), 0, 1);
-
   // json file generation
   $posts = array();
 
@@ -231,29 +242,16 @@ $(document).ready(function(){
                 <div class="col-md">
 
                 	<!--<img src="img/sample_graph.png" style="width: 80%;">-->
+
                 	<?php
                 		if(isset($_SESSION['id'])) {
                 			echo '<h5 class="detail-size-title text-center" style="margin-top:30px; margin-bottom:-40px;">Graph</h5>
-                				<div class="content"></div>';
+                				<div class="content" id="graph"></div>';
                 		}
                 	?>
 
 
-				  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-          <script type="application/json" id ='user_info'><?php include('data.json');?></script>
-           -->
-					<!-- <script type="text/javascript" src="data.json"></script> -->
-
-          <script type="text/javascript" src="draw_size_graph_test.php">
-            var test = new Draw_Graph();
-          </script>
-
-            <!-- <?php
-          //  $get_graph = null;
-            $get_graph = new Draw_Graph();
-           ?> -->
-
-      <!--  <?php include('user_graph.php'); ?> -->
+        <?php include('user_graph.php'); ?>
       <!-- <?php echo $graph -> write() ?> -->
 
 
