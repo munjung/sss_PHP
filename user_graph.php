@@ -1,19 +1,27 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="application/json" id='user_info'><?php include('data.json');?></script>
+
 <?php
-//$val = $_GET['name'];
- //echo "<script>console.log('뭐들어갔니?: '+$val);</script>";
-// $variable = $_POST["variable"];
-// echo "<script>console.log('뭐들어갔니?: '+$variable);</script>";
-// $profile_viewer_uid = $_POST['profile_viewer_uid'];
-// echo "<h1>".$profile_viewer_uid."</h1>";
- //echo "<script>console.log('뭐들어갔니?: '+$profile_viewer_uid);</script>";
+
+class My{
+
+  public function PHPFunction(){
+  echo "<script>alert('dd');</script>";
+              // return echo "<script type='text/javascript'>
+              //      alert('');
+              // </script>";
+      }
+
+}
+
 ?>
-<?php echo $_POST['profile_viewer_uid']; ?>
+
 <script>
 
-var r = document.getElementById('graph');
-console.log("????: "+r);
+// public function test()
+// {
+//     alert('In test Function');
+// }
 
 
   Object.prototype.getKeyByValue = function(value){
@@ -32,11 +40,20 @@ console.log("????: "+r);
    var top_armhole=[];
    var top_arm=[];
 
-   var result = JSON.parse(document.getElementById('user_info').textContent);
+   var result = JSON.parse(document.getElementById('user_info').textContent); //data.json
+
+   writeConsole('result length: '+result.length)
+   writeConsole('result[3]: '+result[3].top.size);
+   <?php
+      $object = new My();
+      $object->PHPFunction();
+    ?>
+
+
 
    for(var i=0; i<result.length; i++){
      if(result[i].top){
-        top_size.push(result[i].top.size);
+        top_size.push(result[i].top.size); //s,m,l,user
         top_length.push(result[i].top.length);
         top_shoulder.push(result[i].top.shoulder);
         top_chest.push(result[i].top.chest);
@@ -87,8 +104,8 @@ console.log("????: "+r);
      }
    }
 
-
-
+</script>
+<script>
   var pentagonIndex = 0;
   var valueIndex = 0;
   var width = 0;
@@ -96,6 +113,10 @@ console.log("????: "+r);
   var radOffset = Math.PI/2;
   var sides = 5; // Number of sides in the polygon
   var theta = 2 * Math.PI/sides; // radians per section
+
+  function writeConsole(word){
+    return console.log(word);
+  }
 
   function getXY(i, radius) {
     return {"x": Math.cos(radOffset +theta * i) * radius*width + width/2,
