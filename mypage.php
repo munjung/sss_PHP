@@ -108,21 +108,23 @@
               <label for="thigh">Thigh</label>
                 <input type="text" class="form-control" id="thigh" placeholder="" name="thigh" value="<?php print $this->u->getThigh();?>"required>
               </div>
-            </div>            
+            </div>
 
             <div class="row">
               <div class="col-md-4 mb-3">
               <label for="crotch">Crotch</label>
                 <input type="text" class="form-control" id="crotch" placeholder="" name="crotch" value="<?php print $this->u->getCrotch();?>"required>
               </div>
-            </div>     
+            </div>
 
             <div class="row">
               <div class="col-md-4 mb-3">
               <label for="height">Height</label>
                 <input type="text" class="form-control" id="height" placeholder="" name="height" value="<?php print $this->u->getHeight();?>"required>
               </div>
-            </div>    
+            </div>
+            <hr class="mb-4">
+            <h4 class="mb-3">order of Priority</h4>
 
             <div class="mb-4 text-center btn-area">
               <button class="btn btn-sub btn-lg" type="submit">Update</button>
