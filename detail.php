@@ -480,13 +480,44 @@ include('top.inc');
 
 
 
+                    if(type =='D' || type =='T'){
+                      if(user_size[2]/clothes_size[2]>1){
+                        if(user_size[3]/clothes_size[3]>1){
+                            $('#send_user_message').text('가슴과 암홀이 작을 수 있어요!!');
+                        }else{
+                            $('#send_user_message').text('가슴이 작을 수 있어요!');
+                        }
+                      }else if(user_size[3]/clothes_size[3]>1){
+                          $('#send_user_message').text('암홀이 작을 수 있어요');
+                      }else{
+                          $('#send_user_message').text('전체적으로 옷이 잘 맞습니다.');
+                      }
+                    }else if(type=='B'){
+                      if(user_size[2]/clothes_size[2]>1){
+                        if(user_size[3]/clothes_size[3]>1){
+                            $('#send_user_message').text('엉덩이와 허벅지가 작을 수 있어요!!');
+                        }else{
+                            $('#send_user_message').text('엉덩이가 작을 수 있어요!');
+                        }
+                      }else if(user_size[3]/clothes_size[3]>1){
+                        $('#send_user_message').text('허벅지가 작을 수 있어요!!');
+                      }else{
+                        $('#send_user_message').text('전체적으로 옷이 잘 맞습니다.');
+                      }
+                    }
 
 
-                    console.log('최종: '+total_result[0], Math.round(total_result[1]*100)/100);
+
+
+
+
+                    console.log('최종22: '+total_result[0], Math.round(total_result[1]*100)/100);
+
 
 
 
                     drawGraph(user_size, clothes_size, size, type);
+
 
 
                     // 셀렉트 박스의 값이 변경될 때마다 작동하는 부분
@@ -576,6 +607,34 @@ include('top.inc');
                     }
 
 
+                    if(type =='D' || type =='T'){
+                      if(user_size[2]/clothes_size[2]>1){
+                        if(user_size[3]/clothes_size[3]>1){
+                            $('#send_user_message').text('가슴과 암홀이 작을 수 있어요!!');
+                        }else{
+                            $('#send_user_message').text('가슴이 작을 수 있어요!');
+                        }
+                      }else if(user_size[3]/clothes_size[3]>1){
+                          $('#send_user_message').text('암홀이 작을 수 있어요');
+                      }else{
+                          $('#send_user_message').text('전체적으로 옷이 잘 맞습니다.');
+                      }
+                    }else if(type=='B'){
+                      if(user_size[2]/clothes_size[2]>1){
+                        if(user_size[3]/clothes_size[3]>1){
+                            $('#send_user_message').text('엉덩이와 허벅지가 작을 수 있어요!!');
+                        }else{
+                            $('#send_user_message').text('엉덩이가 작을 수 있어요!');
+                        }
+                      }else if(user_size[3]/clothes_size[3]>1){
+                        $('#send_user_message').text('허벅지가 작을 수 있어요!!');
+                      }else{
+                        $('#send_user_message').text('전체적으로 옷이 잘 맞습니다.');
+                      }
+                    }
+
+
+
                       console.log("* 선택된 사이즈의 상세 치수들 ");
                       for(var i = 0; i < 5; i++)
                         console.log(clothes_size[i]);
@@ -599,7 +658,7 @@ include('top.inc');
                   }
 
                   function compareAbsValue(val1, val2){
-                    if((val1/val2)>1)
+                    if((val1/val2)>1) //옷이 작다는거야!
                       return Math.abs(2-(val1/val2));
                     else
                       return val1/val2;
@@ -769,6 +828,7 @@ include('top.inc');
 
                 </script>
                 </div>
+                <div id="send_user_message"></div>
                 <div class="text-center py-5">
                   <button type="button" class="btn btn-lg btn-sub">
                     <img class="btn-img" src="assets/card.png">
